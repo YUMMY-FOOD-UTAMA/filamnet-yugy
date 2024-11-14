@@ -17,12 +17,12 @@ class Department extends Model
 
     public function division()
     {
-        return $this->belongsTo(Division::class);
+        return $this->belongsTo(Division::class)->withTrashed();
     }
 
     public function subDepartments()
     {
-        return $this->hasMany(SubDepartment::class);
+        return $this->hasMany(SubDepartment::class)->withTrashed();
     }
 
 }

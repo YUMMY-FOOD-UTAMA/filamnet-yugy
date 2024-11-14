@@ -1,41 +1,36 @@
 <?php
 
-namespace App\Filament\Resources\AccountReceivable;
+namespace App\Filament\Clusters\AccountReceivable\Resources;
 
-use App\Filament\Resources\AccountReceivable\CustomerResource\Pages;
-use App\Filament\Resources\AccountReceivable\CustomerResource\RelationManagers;
-use App\Models\AccountReceivable\Customer;
-use App\Models\Customer\Customer as CustomerModel;
+use App\Filament\Clusters\AccountReceivable;
+use App\Filament\Clusters\AccountReceivable\Resources\CustomerResource\Pages;
+use App\Filament\Clusters\AccountReceivable\Resources\CustomerResource\RelationManagers;
+use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCategory;
-use App\Models\Region\Area;
 use App\Models\Region\Region;
 use App\Models\Region\SubRegion;
-use Cassandra\Custom;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Tables\Filters\Layout;
 
 class CustomerResource extends Resource
 {
-    protected static ?string $model = CustomerModel::class;
+    protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-folder';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Accounts Receivable';
-    protected static ?string $navigationLabel = 'List Of Customer';
-    protected static ?string $recordTitle = 'name';
-    protected static ?string $navigationTitle = 'Customers';
-    protected static ?string $breadcrumb = null;
+    protected static ?string $cluster = AccountReceivable::class;
 
-    protected static int $globalSearchResultsLimit = 20;
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function getNavigationBadge(): ?string
     {
@@ -186,7 +181,7 @@ class CustomerResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\RestoreAction::make(),
-            ])
+            ], position: ActionsPosition::AfterCells)
             ->persistFiltersInSession()
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -204,9 +199,9 @@ class CustomerResource extends Resource
         ];
     }
 
-    protected function getTableFiltersLayout(): ?string
+    public static function getEloquentQuery():Builder
     {
-        return Layout::AboveContent;
+        return parent::getEloquentQuery()->orderByDesc('id');
     }
 
     public static function getPages(): array

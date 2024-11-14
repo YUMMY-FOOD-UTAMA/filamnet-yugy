@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->brandLogo('/images/logo.png')
             ->brandLogoHeight('3rem')
-            ->brandName('Ugy')
+            ->brandName('yugy')
             ->favicon(asset('images/favicon.ico'))
             ->defaultThemeMode(ThemeMode::Light)
             ->sidebarCollapsibleOnDesktop()
@@ -70,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->globalSearch()
             ->globalSearchKeyBindings(['ctrl+k', 'command+k'])
-            ->breadcrumbs(false);
+            ->breadcrumbs(false)
+            ->discoverClusters(in: app_path('Filament/Clusters'),for: 'App\\Filament\\Clusters');
     }
 }

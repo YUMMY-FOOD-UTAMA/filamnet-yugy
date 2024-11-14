@@ -8,8 +8,8 @@ enum SalesMappingStatus
     const APPROVED = 'Approved';
     const IN_PROGRESS = 'In Progress';
     const EXPIRED = 'Expired';
-    const DONE = 'Done';
     const CANCELLED = 'Cancelled';
+    const REJECTED = 'Rejected';
 
     public static function values(): array
     {
@@ -18,8 +18,8 @@ enum SalesMappingStatus
             self::APPROVED,
             self::IN_PROGRESS,
             self::EXPIRED,
-            self::DONE,
             self::CANCELLED,
+            self::REJECTED,
         ];
     }
 
@@ -39,10 +39,6 @@ enum SalesMappingStatus
                 "name" => self::IN_PROGRESS
             ],
             [
-                "id" => self::DONE,
-                "name" => self::DONE
-            ],
-            [
                 "id" => self::EXPIRED,
                 "name" => self::EXPIRED
             ],
@@ -50,10 +46,38 @@ enum SalesMappingStatus
                 "id" => self::CANCELLED,
                 "name" => self::CANCELLED
             ],
+            [
+                "id" => self::REJECTED,
+                "name" => self::REJECTED
+            ],
         ];
 
         return array_map(function ($item) {
             return (object)$item;
         }, $options);
+    }
+
+    public static function statusAvailableForBooking(): array
+    {
+        return [
+            self::CANCELLED,
+            self::REJECTED,
+            self::EXPIRED,
+        ];
+    }
+
+    public static function getStatusColor(string $status): string
+    {
+        switch ($status) {
+            case self::APPROVED:
+                return 'success';
+            case self::REJECTED:
+            case self::CANCELLED:
+                return 'danger';
+            case self::WAITING_APPROVAL:
+                return 'warning';
+            default:
+                return 'secondary';
+        }
     }
 }

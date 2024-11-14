@@ -17,6 +17,6 @@ class Division extends Model
 
     public function department()
     {
-        return $this->hasMany(Department::class);
+        return $this->hasMany(Department::class)->withTrashed();
     }
 }

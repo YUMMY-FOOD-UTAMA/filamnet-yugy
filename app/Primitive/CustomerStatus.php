@@ -38,4 +38,15 @@ enum CustomerStatus
             return (object)$item;
         }, $options);
     }
+
+    public static function options(): array
+    {
+        $options = [
+            self::PROSPECT => self::PROSPECT,
+            self::NEW => self::NEW,
+            self::EXISTING => self::EXISTING,
+        ];
+
+        return $options;
+    }
 }

@@ -17,6 +17,6 @@ class Area extends Model
 
     public function subRegion()
     {
-        return $this->belongsTo(SubRegion::class, 'sub_region_id', 'id');
+        return $this->belongsTo(SubRegion::class, 'sub_region_id', 'id')->withTrashed();
     }
 }

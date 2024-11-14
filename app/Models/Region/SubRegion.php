@@ -17,11 +17,11 @@ class SubRegion extends Model
 
     public function region()
     {
-        return $this->belongsTo(Region::class);
+        return $this->belongsTo(Region::class)->withTrashed();
     }
 
     public function areas()
     {
-        return $this->hasMany(Area::class);
+        return $this->hasMany(Area::class)->withTrashed();
     }
 }

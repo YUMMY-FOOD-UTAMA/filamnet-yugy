@@ -18,11 +18,11 @@ class SubDepartment extends Model
 
     public function department()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class)->withTrashed();
     }
 
     public function employees()
     {
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(Employee::class)->withTrashed();
     }
 }

@@ -18,6 +18,6 @@ class LevelName extends Model
 
     public function levelGrades()
     {
-        return $this->hasMany(LevelName::class);
+        return $this->hasMany(LevelName::class)->withTrashed();
     }
 }

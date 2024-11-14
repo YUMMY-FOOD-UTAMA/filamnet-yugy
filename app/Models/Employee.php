@@ -19,16 +19,16 @@ class Employee extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withTrashed();
     }
 
     public function subDepartment()
     {
-        return $this->belongsTo(SubDepartment::class);
+        return $this->belongsTo(SubDepartment::class)->withTrashed();
     }
 
     public function levelGrade()
     {
-        return $this->belongsTo(LevelGrade::class);
+        return $this->belongsTo(LevelGrade::class)->withTrashed();
     }
 }

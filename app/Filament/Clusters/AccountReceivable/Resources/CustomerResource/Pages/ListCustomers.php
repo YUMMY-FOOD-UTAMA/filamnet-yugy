@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\AccountReceivable\CustomerResource\Pages;
+namespace App\Filament\Clusters\AccountReceivable\Resources\CustomerResource\Pages;
 
-use App\Filament\Resources\AccountReceivable\CustomerResource;
+use App\Filament\Clusters\AccountReceivable\Resources\CustomerResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 

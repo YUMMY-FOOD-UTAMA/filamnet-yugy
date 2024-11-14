@@ -18,6 +18,6 @@ class LevelGrade extends Model
 
     public function levelName()
     {
-        return $this->belongsTo(LevelName::class, 'level_name_id', 'id');
+        return $this->belongsTo(LevelName::class, 'level_name_id', 'id')->withTrashed();
     }
 }

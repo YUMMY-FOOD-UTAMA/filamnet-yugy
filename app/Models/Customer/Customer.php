@@ -47,22 +47,22 @@ class Customer extends Model
 
     public function customerCategory()
     {
-        return $this->belongsTo(CustomerCategory::class);
+        return $this->belongsTo(CustomerCategory::class)->withTrashed();
     }
 
     public function customerGroup()
     {
-        return $this->belongsTo(CustomerGroup::class);
+        return $this->belongsTo(CustomerGroup::class)->withTrashed();
     }
 
     public function customerSegment()
     {
-        return $this->belongsTo(CustomerSegment::class);
+        return $this->belongsTo(CustomerSegment::class)->withTrashed();
     }
 
     public function area()
     {
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(Area::class)->withTrashed();
     }
 
     public static function availableForBooked($customerIDs, $startVisit, $endVisit): bool

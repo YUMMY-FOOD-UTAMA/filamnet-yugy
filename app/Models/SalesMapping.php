@@ -20,12 +20,12 @@ class SalesMapping extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id')->withTrashed();
     }
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(Employee::class, 'employee_id')->withTrashed();
     }
 
     public function expiredAtTheDay()

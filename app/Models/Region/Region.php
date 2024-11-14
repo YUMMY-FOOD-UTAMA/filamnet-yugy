@@ -17,6 +17,6 @@ class Region extends Model
 
     public function subRegions()
     {
-        return $this->hasMany(SubRegion::class);
+        return $this->hasMany(SubRegion::class)->withTrashed();
     }
 }
