@@ -1,0 +1,35 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+.fi-sidebar {
+    @apply bg-red-500
+}
+
+.fi-sidebar * {
+    color: white !important;
+}
+
+.fi-sidebar-header {
+    @apply bg-red-500;
+}
+
+/* Ganti warna item sidebar saat di-hover */
+.fi-sidebar-item-button:hover {
+    background-color: #e24b58 !important;
+}
+
+.fi-sidebar-item-active > a {
+    @apply bg-red-700;
+
+    & > svg, span {
+        @apply text-white;
+    }
+
+    &:hover {
+        @apply bg-red-600;
+    }
+}
+
+.fi-sidebar-header {
+    @apply !bg-inherit ring-0 shadow-none;
+}
